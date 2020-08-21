@@ -1,0 +1,9 @@
+[package]
+name = "LoRast"
+version = "0.1.0"
+authors = ["Inoki <veyx.shaw@gmail.com>"]
+edition = "2018"
+description = "LoRa Packet Air Time calculator/Tool Sets in Rust"
+
+[dependencies]
+iced = "0.1"
