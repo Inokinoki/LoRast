@@ -20,6 +20,11 @@ struct LoRaParam {
     payload_length_buffer: String,
 
     input: text_input::State,
+
+    /* widgets */
+    crcCheckbox: Checkbox,
+    ldrCheckbox: Checkbox,
+    headerCheckbox: Checkbox,
 }
 
 #[derive(Debug, Clone)]
@@ -67,6 +72,27 @@ impl Sandbox for LoRaParam {
     }
 
     fn view(&mut self) -> Element<Message> {
+        self.headerCheckbox = Checkbox::new(
+            true,
+            "With CRC",
+            Message::CRCCheckboxToggled,
+        );
+        self.headerCheckbox.width(Length::from(200));
+    
+        self.crcCheckbox = Checkbox::new(
+            true,
+            "With Header",
+            Message::HeaderCheckboxToggled,
+        );
+        self.crcCheckbox.width(Length::from(200));
+
+        self.ldrCheckbox = Checkbox::new(
+            false,
+            "Enable Low Data Rate",
+            Message::LDRCheckboxToggled,
+        );
+        self.ldrCheckbox.width(Length::from(200));
+
         Column::new()
             .padding(20)
             .align_items(Align::Center)
@@ -80,27 +106,9 @@ impl Sandbox for LoRaParam {
             )
             .push(
                 Row::new().padding(20).align_items(Align::Center)
-                .push(
-                    Checkbox::new(
-                        true,
-                        "With Header",
-                        Message::HeaderCheckboxToggled,
-                    ).width(Length::from(200))
-                )
-                .push(
-                    Checkbox::new(
-                        true,
-                        "With CRC",
-                        Message::CRCCheckboxToggled,
-                    ).width(Length::from(200))
-                )
-                .push(
-                    Checkbox::new(
-                        false,
-                        "Enable Low Data Rate",
-                        Message::LDRCheckboxToggled,
-                    ).width(Length::from(200))
-                )
+                .push(self.headerCheckbox)
+                .push(self.crcCheckbox)
+                .push(self.ldrCheckbox)
             )
             .into()
     }
