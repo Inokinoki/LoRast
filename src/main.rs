@@ -93,7 +93,7 @@ impl Sandbox for LoRaParam {
             .push(
                 TextInput::new(
                         &mut self.input,
-                        "Type something...",
+                        "Input payload length(in byte)",
                         &self.payload_length_buffer,
                         Message::InputChanged,
                 )
