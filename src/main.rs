@@ -22,9 +22,6 @@ struct LoRaParam {
     input: text_input::State,
 
     /* widgets */
-    crcCheckbox: Checkbox,
-    ldrCheckbox: Checkbox,
-    headerCheckbox: Checkbox,
 }
 
 #[derive(Debug, Clone)]
@@ -72,26 +69,23 @@ impl Sandbox for LoRaParam {
     }
 
     fn view(&mut self) -> Element<Message> {
-        self.headerCheckbox = Checkbox::new(
+        let headerCheckbox = Checkbox::new(
             true,
             "With CRC",
             Message::CRCCheckboxToggled,
-        );
-        self.headerCheckbox.width(Length::from(200));
+        ).width(Length::from(220));
     
-        self.crcCheckbox = Checkbox::new(
+        let crcCheckbox = Checkbox::new(
             true,
             "With Header",
             Message::HeaderCheckboxToggled,
-        );
-        self.crcCheckbox.width(Length::from(200));
+        ).width(Length::from(220));
 
-        self.ldrCheckbox = Checkbox::new(
+        let ldrCheckbox = Checkbox::new(
             false,
             "Enable Low Data Rate",
             Message::LDRCheckboxToggled,
-        );
-        self.ldrCheckbox.width(Length::from(200));
+        ).width(Length::from(220));
 
         Column::new()
             .padding(20)
@@ -106,9 +100,9 @@ impl Sandbox for LoRaParam {
             )
             .push(
                 Row::new().padding(20).align_items(Align::Center)
-                .push(self.headerCheckbox)
-                .push(self.crcCheckbox)
-                .push(self.ldrCheckbox)
+                .push(headerCheckbox)
+                .push(crcCheckbox)
+                .push(ldrCheckbox)
             )
             .into()
     }
