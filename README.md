@@ -1,6 +1,7 @@
+# LoRast
+
 A LoRa toolset written in Rust
 
-# TODO
+## TODO
 
 Wait for iced Pick List release...
-
